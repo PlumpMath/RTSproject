@@ -11,8 +11,22 @@ public class ClickToDeselect : MonoBehaviour
 	    _unitManager = GameObject.Find("PlayerUnitManager").GetComponent<UnitManager>();
 	}
 
-    void OnMouseUpAsButton()
+    void Update()
     {
-	    _unitManager.DeselectAllUnits();
-	}
+        if (renderer.isVisible && Input.GetMouseButtonDown(0))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 40f))
+            {
+                if(gameObject.GetInstanceID() == hit.transform.gameObject.GetInstanceID())
+                    _unitManager.DeselectAllUnits();
+            }
+        }
+    }
+
+    //void OnMouseDown()
+    //{
+    //    _unitManager.DeselectAllUnits();
+    //}
 }

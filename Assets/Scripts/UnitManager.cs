@@ -36,6 +36,16 @@ public class UnitManager : MonoBehaviour {
 
     }
 
+    public void DeselectSingleUnit(Unit unit)
+    {
+        if (_selectedUnits.Contains(unit))
+        {
+            unit.IsSelected = false;
+            unit.SelectionIndicator.SetActive(false);
+            _selectedUnits.Remove(unit);
+        }
+    }
+
     public void DeselectAllUnits()
     {
         foreach (var unit in _selectedUnits)

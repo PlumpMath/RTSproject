@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Collections;
 
@@ -6,7 +7,6 @@ public class DragSelection : MonoBehaviour
 {
     public Texture2D SelectionBoxTexture;
     public static Rect SelectionBox;
-    public static List<Unit> DragSelected = new List<Unit>(); 
     
     private Vector3 _startClick;
     private UnitManager _unitManager;
@@ -24,11 +24,6 @@ public class DragSelection : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (DragSelected.Count > 0)
-            {
-                _unitManager.SelectMultipleUnits(DragSelected);
-                DragSelected.Clear(); 
-            }
             SelectionBox = new Rect(0, 0, 0, 0);
             _startClick = -Vector3.one;
         }
