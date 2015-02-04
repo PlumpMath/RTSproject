@@ -410,10 +410,12 @@ GameObject:
   - 111: {fileID: 11109120}
   - 136: {fileID: 13618418}
   - 195: {fileID: 19587606}
-  - 114: {fileID: 11418412}
   - 114: {fileID: 11418414}
   - 114: {fileID: 11418416}
   - 114: {fileID: 11446644}
+  - 114: {fileID: 11476792}
+  - 114: {fileID: 11431078}
+  - 114: {fileID: 11409798}
   m_Layer: 0
   m_Name: SkeletonWarior
   m_TagString: Unit
@@ -1624,7 +1626,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &11418412
+--- !u!114 &11409798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1632,18 +1634,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 109084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82e2ca6f6f7cc945896e58bf5097993, type: 3}
+  m_Script: {fileID: 11500000, guid: 4142bbbf840d12346977946377f39afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HealtBar: {fileID: 11407058}
   SelectionIndicator: {fileID: 118418}
   Team: 0
   Name: Skeleton Warior
-  MaxHealth: 100
+  MaxHealth: 50
   CurrHealth: 0
+  Speed: 10
+  Acceleration: 10
+  RotationSpeed: 1240
   Damage: 15
-  Range: 2
+  Range: 3
   AtackSpeed: 2
+  IsDead: 0
 --- !u!114 &11418414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1667,6 +1673,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mesh: {fileID: 13709120}
+--- !u!114 &11431078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f810461e9dbc924cb7c85c8437e9c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11446644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1691,6 +1708,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBarPosition: {fileID: 407104}
+--- !u!114 &11476792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c772e62b58b624daf20fba13076513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveOrderEffect: {fileID: 19853806, guid: 45e623b5d8a0b614aa15db79ce33ae9c, type: 2}
 --- !u!136 &13618418
 CapsuleCollider:
   m_ObjectHideFlags: 1

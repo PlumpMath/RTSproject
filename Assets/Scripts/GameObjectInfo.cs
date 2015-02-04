@@ -4,7 +4,6 @@ using System.Collections;
 
 public class GameObjectInfo : MonoBehaviour
 {
-
     public int Team;
 
     private static Dictionary<int, GameObjectInfo> _infoDictionary = new Dictionary<int, GameObjectInfo>();
@@ -29,7 +28,6 @@ public class GameObjectInfo : MonoBehaviour
     {
         GameObjectInfo info = null;
 
-        Debug.Log("Getting: " + id);
         _infoDictionary.TryGetValue(id, out info);
 
         return info;

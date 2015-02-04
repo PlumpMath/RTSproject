@@ -17,7 +17,7 @@ public class SelectableOnDrag : MonoBehaviour
 	
 	void Update () 
     {
-        if (Mesh.isVisible && Input.GetMouseButton(0))
+        if (Mesh.isVisible && Input.GetMouseButton(0) && !_unit.IsDead)
         {
             var camPos = Camera.main.WorldToScreenPoint(transform.position);
             camPos.y = DragSelection.InvertMouseY(camPos.y);

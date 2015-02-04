@@ -20,49 +20,49 @@ public class RightClickToSetDestination : MonoBehaviour
 
     void Start()
     {
-        //_agent.SetDestination(transform.position);
-        //if (_orderEffect == null)
-        //{
-        //    _orderEffect = Instantiate(MoveOrderEffect) as ParticleSystem;
-        //    _orderEffect.Stop();
-        //}
+        _agent.SetDestination(transform.position);
+        if (_orderEffect == null)
+        {
+            _orderEffect = Instantiate(MoveOrderEffect) as ParticleSystem;
+            _orderEffect.Stop();
+        }
     }
 	
 	void Update ()
 	{
-        if (Input.GetMouseButtonDown(1))
-        {
-            var selectedUnits = _unitManager.GetSelectedUnits();
-            if (selectedUnits.Count > 0)
-            {
-                var hit = GetHit();
-                if (hit.transform.gameObject.CompareTag("Walkable"))
-                {
-                    foreach (var unit in selectedUnits)
-                    {
-                        unit.Target = null;
-                        unit.Destination = hit.point;
-                    }
-                    Instantiate(MoveOrderEffect, hit.point, MoveOrderEffect.transform.rotation);
-                }
-            } 
-        }
-
-        //if (_unit.IsSelected && Input.GetMouseButtonDown(1))
+        //if (Input.GetMouseButtonDown(1))
         //{
-        //    var hit = GetHit();
-
-        //    if (hit.transform.gameObject.CompareTag("Walkable"))
+        //    var selectedUnits = _unitManager.GetSelectedUnits();
+        //    if (selectedUnits.Count > 0)
         //    {
-        //        _unit.Target = null;
-        //        _unit.Destination = hit.point;
-        //        if (_orderEffect.transform.position != hit.point)
+        //        var hit = GetHit();
+        //        if (hit.transform.gameObject.CompareTag("Walkable"))
         //        {
-        //            _orderEffect.transform.position = hit.point;
-        //            _orderEffect.Play(); 
+        //            foreach (var unit in selectedUnits)
+        //            {
+        //                unit.Target = null;
+        //                unit.Destination = hit.point;
+        //            }
+        //            Instantiate(MoveOrderEffect, hit.point, MoveOrderEffect.transform.rotation);
         //        }
-        //    }
+        //    } 
         //}
+
+        if (_unit.IsSelected && Input.GetMouseButtonDown(1))
+        {
+            var hit = GetHit();
+
+            if (hit.transform.gameObject.CompareTag("Walkable"))
+            {
+                _unit.Target = null;
+                _unit.Destination = hit.point;
+                if (_orderEffect.transform.position != hit.point)
+                {
+                    _orderEffect.transform.position = hit.point;
+                    _orderEffect.Play(); 
+                }
+            }
+        }
     }
 
     private RaycastHit GetHit()

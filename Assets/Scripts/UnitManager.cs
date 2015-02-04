@@ -6,6 +6,8 @@ using System.Collections;
 public class UnitManager : MonoBehaviour 
 {
 
+    //private List<Unit> _selectedUnits = new List<Unit>();
+    //private Dictionary<int, Unit> _UnitsByObjectId = new Dictionary<int, Unit>();
     private List<Unit> _selectedUnits = new List<Unit>();
     private Dictionary<int, Unit> _UnitsByObjectId = new Dictionary<int, Unit>();
 

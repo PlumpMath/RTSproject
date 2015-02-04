@@ -17,33 +17,32 @@ public class RightClickToSetTarget : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(1))
+        //if (Input.GetMouseButtonUp(1))
+        //{
+        //    var selectedUnits = _unitManager.GetSelectedUnits();
+        //    if (selectedUnits.Count > 0)
+        //    {
+        //        var hit = GetHit();
+        //        if (!hit.transform.gameObject.CompareTag("Walkable"))
+        //        {
+        //            foreach (var unit in selectedUnits)
+        //            {
+        //                unit.Target = hit.transform.gameObject;
+        //            }
+        //        }
+        //    }
+
+        if (_unit.IsSelected && Input.GetMouseButtonUp(1))
         {
-            var selectedUnits = _unitManager.GetSelectedUnits();
-            if (selectedUnits.Count > 0)
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            Physics.Raycast(ray, out hit, Mathf.Infinity);
+
+            if (IsObjectAttacable(hit.transform.gameObject))
             {
-                var hit = GetHit();
-                if (!hit.transform.gameObject.CompareTag("Walkable"))
-                {
-                    foreach (var unit in selectedUnits)
-                    {
-                        unit.Target = hit.transform.gameObject;
-                    }
-                }
+                _unit.Target = hit.transform.gameObject;
             }
-
-            //if (_unit.IsSelected && Input.GetMouseButtonUp(1))
-            //{
-            //    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    RaycastHit hit;
-
-            //    Physics.Raycast(ray, out hit, Mathf.Infinity);
-
-            //    if (IsObjectAttacable(hit.transform.gameObject))
-            //    {
-            //        _unit.Target = hit.transform.gameObject;
-            //    }
-            //}
         }
     }
 
@@ -55,5 +54,14 @@ public class RightClickToSetTarget : MonoBehaviour
         Physics.Raycast(ray, out hit, Mathf.Infinity);
 
         return hit;
+    }
+
+    private bool IsObjectAttacable(GameObject obj)
+    {
+        //if(obj.CompareTag("Unit") && _unitManager.GetUnitByObjectId(obj.GetInstanceID()) == null)
+        if (obj.CompareTag("Unit"))  
+            return true;
+
+        return false;
     }
 }
