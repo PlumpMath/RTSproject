@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Controlls/Drag Selection")]
 public class DragSelection : MonoBehaviour
 {
     public Texture2D SelectionBoxTexture;

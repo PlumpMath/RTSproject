@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Controlls/Click To Deselect")]
 public class ClickToDeselect : MonoBehaviour
 {
 
@@ -11,22 +12,22 @@ public class ClickToDeselect : MonoBehaviour
 	    _unitManager = GameObject.Find("PlayerUnitManager").GetComponent<UnitManager>();
 	}
 
-    void Update()
-    {
-        if (renderer.isVisible && Input.GetMouseButtonDown(0))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 40f))
-            {
-                if(gameObject.GetInstanceID() == hit.transform.gameObject.GetInstanceID())
-                    _unitManager.DeselectAllUnits();
-            }
-        }
-    }
-
-    //void OnMouseDown()
+    //void Update()
     //{
-    //    _unitManager.DeselectAllUnits();
+    //    if (renderer.isVisible && Input.GetMouseButtonDown(0))
+    //    {
+    //        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        RaycastHit hit;
+    //        if (Physics.Raycast(ray, out hit, 40f))
+    //        {
+    //            if(gameObject.GetInstanceID() == hit.transform.gameObject.GetInstanceID())
+    //                _unitManager.DeselectAllUnits();
+    //        }
+    //    }
     //}
+
+    void OnMouseDown()
+    {
+        _unitManager.DeselectAllUnits();
+    }
 }

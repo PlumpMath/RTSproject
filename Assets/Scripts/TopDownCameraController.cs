@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Controlls/Top-Down Camera Controller")]
 public class TopDownCameraController : MonoBehaviour
 {
     public float CameraSpeed = 5f;
@@ -42,7 +43,7 @@ public class TopDownCameraController : MonoBehaviour
             _zoomLevel = Mathf.Clamp(zoom.y + ZoomSpeed*-Input.GetAxis("Mouse ScrollWheel")*10, 10, 30);
         }
 
-        var step = Mathf.Lerp(Camera.main.transform.position.y, _zoomLevel, 0.005f);
+        var step = Mathf.Lerp(Camera.main.transform.position.y, _zoomLevel, 0.01f);
         zoom.y = step;
         Camera.main.transform.position = zoom;
     }

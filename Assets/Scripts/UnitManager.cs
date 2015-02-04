@@ -3,23 +3,42 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 
-public class UnitManager : MonoBehaviour {
+public class UnitManager : MonoBehaviour 
+{
 
     private List<Unit> _selectedUnits = new List<Unit>();
+    private Dictionary<int, Unit> _UnitsByObjectId = new Dictionary<int, Unit>();
+
+    public void RegisterUnit(int id, Unit unit)
+    {
+        _UnitsByObjectId.Add(id, unit);
+    }
+
+    public void UnRegisterUnit(int id)
+    {
+        _UnitsByObjectId.Remove(id);
+    }
+
+    public Unit GetUnitByObjectId(int id)
+    {
+        Unit unit = null;
+
+        _UnitsByObjectId.TryGetValue(id, out unit);
+
+        return unit;
+    }
 
 
     public void SelectSingleUnit(Unit unit)
     {
         DeselectAllUnits();
-        unit.IsSelected = true;
-        unit.SelectionIndicator.SetActive(true);
+        ApplySelectionValues(true, unit);
         _selectedUnits.Add(unit);
     }
 
     public void SelectAditionalUnit(Unit unit)
     {
-        unit.IsSelected = true;
-        unit.SelectionIndicator.SetActive(true);
+        ApplySelectionValues(true, unit);
         _selectedUnits.Add(unit);
     }
 
@@ -29,8 +48,7 @@ public class UnitManager : MonoBehaviour {
 
         foreach (var unit in units)
         {
-            unit.IsSelected = true;
-            unit.SelectionIndicator.SetActive(true);
+            ApplySelectionValues(true, unit);
             _selectedUnits.Add(unit);
         }
 
@@ -40,8 +58,7 @@ public class UnitManager : MonoBehaviour {
     {
         if (_selectedUnits.Contains(unit))
         {
-            unit.IsSelected = false;
-            unit.SelectionIndicator.SetActive(false);
+            ApplySelectionValues(false, unit);
             _selectedUnits.Remove(unit);
         }
     }
@@ -50,8 +67,7 @@ public class UnitManager : MonoBehaviour {
     {
         foreach (var unit in _selectedUnits)
         {
-            unit.IsSelected = false;
-            unit.SelectionIndicator.SetActive(false);
+            ApplySelectionValues(false, unit);
         }
         _selectedUnits.Clear();
     }
@@ -59,5 +75,12 @@ public class UnitManager : MonoBehaviour {
     public List<Unit> GetSelectedUnits()
     {
         return _selectedUnits;
+    }
+
+    private void ApplySelectionValues(bool on_off, Unit unit)
+    {
+        unit.IsSelected = on_off;
+        unit.SelectionIndicator.SetActive(on_off);
+        unit.HealtBar.gameObject.SetActive(on_off);
     }
 }

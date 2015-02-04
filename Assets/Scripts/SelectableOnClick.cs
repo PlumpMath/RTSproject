@@ -3,6 +3,7 @@ using System.Net.Mail;
 using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Controlls/Selectable On Click")]
 public class SelectableOnClick : MonoBehaviour
 {
     private Unit _unit;

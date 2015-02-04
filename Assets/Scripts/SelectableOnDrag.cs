@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[AddComponentMenu("Controlls/Selectable On Drag")]
 public class SelectableOnDrag : MonoBehaviour
 {
+    public Renderer Mesh;
 
     private Unit _unit;
     private UnitManager _unitManager;
@@ -15,7 +17,7 @@ public class SelectableOnDrag : MonoBehaviour
 	
 	void Update () 
     {
-        if (renderer.isVisible && Input.GetMouseButton(0))
+        if (Mesh.isVisible && Input.GetMouseButton(0))
         {
             var camPos = Camera.main.WorldToScreenPoint(transform.position);
             camPos.y = DragSelection.InvertMouseY(camPos.y);
